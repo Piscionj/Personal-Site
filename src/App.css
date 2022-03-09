@@ -1,0 +1,56 @@
+html {
+  background-color: #343a40;
+}
+
+#about {
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  border-bottom: 3px solid rgb(33,37,41);
+}
+
+#about > div {
+  padding: 15px;
+  width: 25%;
+  text-align: center;
+}
+
+p {
+  padding-top: 30px;
+}
+
+#portfolio, .carousel, .carousel-inner, .carousel-item {
+  height: 100%;
+}
+
+#portfolio > h1 {
+  text-align: center;
+  background-color: rgb(33,37,41);
+  color: white;
+  margin: 0;
+  padding: 10px 0;
+}
+
+#portfolio {
+  text-align: center;
+}
+
+#portfolio img {
+  margin-top: 10px;
+  margin-bottom: 155px;
+}
+
+.carousel-item {
+  background-color: #343a40;
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(33,37,41);
+    color: #aba499;
+}
+::-webkit-scrollbar-corner {
+    background-color: #181a1b;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #454a4d;
+}
