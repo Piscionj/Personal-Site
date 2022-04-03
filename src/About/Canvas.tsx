@@ -8,7 +8,7 @@ const Canvas = () => {
 
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      2,
       0.1,
       1000
     );
@@ -17,7 +17,7 @@ const Canvas = () => {
       canvas: document.querySelector("#bg"),
     });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth * 0.75, window.innerHeight);
+    renderer.setSize(window.innerWidth * 0.75, (window.innerHeight - 56));
     renderer.render(scene, camera);
     camera.position.setZ(20);
     camera.position.setX(-3);
@@ -74,25 +74,35 @@ const Canvas = () => {
 
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
-
-    // const gridHelper = new THREE.GridHelper(200, 50);
-    // scene.add(gridHelper);
-
     const backgroundTexture = new THREE.TextureLoader().load(
       "background-gradient.jpg"
     );
     scene.background = backgroundTexture;
 
-    window.addEventListener("resize", onWindowResize, false);
-    function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth * 0.75, window.innerHeight);
+    // window.addEventListener("resize", onWindowResize, false);
+    // function onWindowResize() {
+    //   resizeCanvasToDisplaySize()
+    // }
+    function resizeCanvasToDisplaySize() {
+      const canvas = renderer.domElement;
+      // look up the size the canvas is being displayed
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+    
+      // adjust displayBuffer size to match
+      if (canvas.width !== width || canvas.height !== height) {
+        // you must pass false here or three.js sadly fights the browser
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    
+        // update any render target sizes here
+      }
     }
 
     const orbitingSpheres = [react, html, css];
     function animate() {
-      requestAnimationFrame(animate);
+      resizeCanvasToDisplaySize()
       saturn.rotation.y += 0.01;
 
       pivotPoint1.rotation.y += 0.005;
@@ -109,9 +119,10 @@ const Canvas = () => {
 
       controls.update();
       renderer.render(scene, camera);
+      requestAnimationFrame(animate);
     }
     animate();
-  });
+  }, []);
 
   return <canvas id="bg"></canvas>;
 };

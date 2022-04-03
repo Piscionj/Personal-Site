@@ -1,48 +1,78 @@
+body {
+  background-color: #1A1B1E;
+}
 html {
   background-color: #343a40;
 }
 
-#about {
+section {
   background-color: #343a40;
   color: white;
+  border-bottom: 20px solid #1A1B1E;
+  text-align: center;
+}
+
+#projects {
+  height: calc(100vh - 56px);
+}
+
+#about {
+  padding-top: 56px;
   display: flex;
-  border-bottom: 3px solid rgb(33,37,41);
+  flex-direction: column;
+  border-right: 10px solid #1A1B1E;
+  border-left: 10px solid #1A1B1E;
+}
+@media screen and (min-width: 768px) {
+  #about {
+  flex-direction: row;
+  }
 }
 
 #about > div {
   padding: 15px;
-  width: 25%;
   text-align: center;
+  width: 100%;
+}
+canvas {
+  height: 50% !important;
+  width: 100% !important;
+  margin: auto;
+}
+@media screen and  (min-width: 768px) {
+  #about > div {
+    width: 25%;
+    border-right: 10px solid #1A1B1E;
+  }
+  canvas {
+    height: 100% !important;
+  }
 }
 
-p {
+#about p {
   padding-top: 30px;
 }
 
-#portfolio, .carousel, .carousel-inner, .carousel-item {
-  height: 100%;
+#projects p {
+  margin-bottom: 20px;
 }
 
-#portfolio > h1 {
-  text-align: center;
-  background-color: rgb(33,37,41);
-  color: white;
-  margin: 0;
-  padding: 10px 0;
+section h1 {
+  background-color: #181a1b;
+  padding: 10px;
 }
 
-#portfolio {
-  text-align: center;
-  height: 80vh;
-}
-
-#portfolio img {
-  margin-top: 10px;
-  margin-bottom: 155px;
+.carousel {
+  width: 100%;
 }
 
 .carousel-item {
   background-color: #343a40;
+  text-align: center;
+}
+
+.carousel-indicators {
+  position: relative !important;
 }
 
 ::-webkit-scrollbar {
